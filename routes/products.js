@@ -23,7 +23,7 @@ router.get("/:id", (req, res) => {
 
 // ===== TASK 4: PUT /products/:id (edit) =====
 
-// ===== TASK 5: DELETE /products/:id (remove) =====
+// ===== TASK 5: DELETE /products/:id (remove) ===== by Timaakrang 
 router.delete("/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const productIndex = products.findIndex(p => p.id === id);
