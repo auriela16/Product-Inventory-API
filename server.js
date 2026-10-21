@@ -10,7 +10,8 @@ app.get("/", (req, res) => {
   res.send("Product Inventory API is running");
 });
 
-// Routes will be added below by each team member
+const productsRouter = require("./routes/products");
+app.use("/products", productsRouter);
 
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
