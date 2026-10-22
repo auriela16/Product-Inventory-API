@@ -11,9 +11,24 @@ let products = [
   { id: 6, name: "Salt", price: 500, quantity: 50 },
 ];
 let nextId = 7;
+  
+// ===== TASK 1: POST /products (add a product) by valentine ===== 
+router.post("/", (req, res) =>  {
+  const { name, price, quantity } = req.body;
+if (!name || price === undefined  ||
+quantity === undefined) { 
+  return res.status (400).json({ message: "name, price and quantity are required" });
+};
+  const newProduct = {
+    id: nextId++,
+    name,
+    price: Number(price),
+    quantity: Number(quantity),
+  };
 
-// ===== TASK 1: POST /products (add a product) =====
-
+  products.push(newProduct);
+  res.status(201).json(newProduct);
+});
 // ===== TASK 2: GET /products (list all) =====
 
 // ===== TASK 3: GET /products/:id (view one) by bilal-yunus-dev =====
