@@ -33,6 +33,12 @@ quantity === undefined) {
 });
 // ===== TASK 2: GET /products (list all) =====
 
+// ===== LOW-STOCK ROUTE ===== by Timaakrang 
+router.get("/low-stock", (req, res) => {
+const lowStockProducts = products.filter((product) => product.quantity < 10);
+res.json(lowStockProducts);
+  });
+
 // ===== TASK 3: GET /products/:id (view one) by bilal-yunus-dev =====
 router.get("/:id", (req, res) => {
   const product = products.find((p) => p.id === parseInt(req.params.id));
