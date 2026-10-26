@@ -49,6 +49,22 @@ router.get("/:id", (req, res) => {
 });
 
 // ===== TASK 4: PUT /products/:id (edit) =====
+router.put("/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const product = products.find((p) => p.id === id);
+
+  if (!product) {
+    return res.status(404).json({ message: "Product not found" });
+  }
+
+  const { name, price, quantity } = req.body;
+
+  if (name !== undefined) product.name = name;
+  if (price !== undefined) product.price = Number(price);
+  if (quantity !== undefined) product.quantity = Number(quantity);
+
+  res.json(product);
+});
 
 // ===== TASK 5: DELETE /products/:id (remove) ===== by Timaakrang 
 router.delete("/:id", (req, res) => {
