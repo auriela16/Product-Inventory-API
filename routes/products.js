@@ -9,8 +9,10 @@ let products = [
   { id: 4, name: "Palm Oil", price: 4500, quantity: 12 },
   { id: 5, name: "Sugar", price: 2500, quantity: 25 },
   { id: 6, name: "Salt", price: 500, quantity: 50 },
+  { id: 7, name: "Milk", price: 1800, quantity:   5 },
+  { id: 8, name: "Bread", price: 1200, quantity: 8 },
 ];
-let nextId = 7;
+let nextId = 9;
   
 // ===== TASK 1: POST /products (add a product) by valentine ===== 
 router.post("/", (req, res) =>  {
