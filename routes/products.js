@@ -35,6 +35,16 @@ router.post("/", (req, res) => {
 
 // ===== TASK 2: GET /products (list all) =====
 router.get("/", (req, res) => {
+  const { name } = req.query;
+
+  if (name) {
+    const results = products.filter((p) =>
+      p.name.toLowerCase().includes(name.toLowerCase())
+    );
+
+    return res.json(results);
+  }
+
   res.json(products);
 });
 
