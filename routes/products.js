@@ -9,18 +9,19 @@ let products = [
   { id: 4, name: "Palm Oil", price: 4500, quantity: 12 },
   { id: 5, name: "Sugar", price: 2500, quantity: 25 },
   { id: 6, name: "Salt", price: 500, quantity: 50 },
-  { id: 7, name: "Milk", price: 1800, quantity:   5 },
+  { id: 7, name: "Milk", price: 1800, quantity: 5 },
   { id: 8, name: "Bread", price: 1200, quantity: 8 },
 ];
 let nextId = 9;
-  
-// ===== TASK 1: POST /products (add a product) by valentine ===== 
-router.post("/", (req, res) =>  {
+
+// ===== TASK 1: POST /products (add a product) by valentine =====
+router.post("/", (req, res) => {
   const { name, price, quantity } = req.body;
-if (!name || price === undefined  ||
-quantity === undefined) { 
-  return res.status (400).json({ message: "name, price and quantity are required" });
-};
+  if (!name || price === undefined || quantity === undefined) {
+    return res
+      .status(400)
+      .json({ message: "name, price and quantity are required" });
+  }
   const newProduct = {
     id: nextId++,
     name,
@@ -31,13 +32,17 @@ quantity === undefined) {
   products.push(newProduct);
   res.status(201).json(newProduct);
 });
-// ===== TASK 2: GET /products (list all) =====
 
-// ===== LOW-STOCK ROUTE ===== by Timaakrang 
+// ===== TASK 2: GET /products (list all) =====
+router.get("/", (req, res) => {
+  res.json(products);
+});
+
+// ===== LOW-STOCK ROUTE ===== by Timaakrang
 router.get("/low-stock", (req, res) => {
-const lowStockProducts = products.filter((product) => product.quantity < 10);
-res.json(lowStockProducts);
-  });
+  const lowStockProducts = products.filter((product) => product.quantity < 10);
+  res.json(lowStockProducts);
+});
 
 // ===== TASK 3: GET /products/:id (view one) by bilal-yunus-dev =====
 router.get("/:id", (req, res) => {
@@ -66,7 +71,7 @@ router.put("/:id", (req, res) => {
   res.json(product);
 });
 
-// ===== TASK 5: DELETE /products/:id (remove) ===== by Timaakrang 
+// ===== TASK 5: DELETE /products/:id (remove) ===== by Timaakrang
 router.delete("/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const productIndex = products.findIndex((p) => p.id === id);
